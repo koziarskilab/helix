@@ -139,7 +139,7 @@ done
 
 `--noisy` re-scores against the clean oracle (runs save noisy scores during training). Figure 6 plots the `top10_mean` column (no similarity constraint) minus the noise-free baseline from Section 4.1.
 
-### C.3 - State space estimation
+### Appendix C - State space estimation
 
 Estimates the size of the chemical space accessible to HELiX as a function of fragment library size and trajectory length.
 
@@ -209,7 +209,7 @@ for hit in {0..9}; do
 done
 ```
 
-### E.3 - Library size and scaling
+### E.4 - Library size and scaling
 
 **Library comparison:** runs HELiX on the full CONCAT library (128k fragments).
 
