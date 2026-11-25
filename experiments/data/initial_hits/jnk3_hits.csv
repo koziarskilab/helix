@@ -1,0 +1,11 @@
+molecule
+O=C(O)c1cccc(-c2ccnc(Nc3ccc(N4CCN(C5CCC5)CC4)cc3)c2)c1
+Nc1cccc(-c2ccnc(Nc3ccc(N4CCN(C5CCC5)CC4)cc3)c2)c1
+CC(=O)c1cccc(-c2ccnc(Nc3ccc(N4CCCCC4)cc3)c2)c1
+Nc1cccc(-c2ccnc(Nc3ccc(N4CC(C(=O)O)C4)cc3)c2)c1
+O=C(O)C1CCN(c2ccc(Nc3cc(-c4cccnc4)ccn3)cc2)CC1
+CC(=O)c1cccc(-c2ccnc(Nc3ccc(N4CCC[C@H]4C(=O)N4CCNCC4)cc3)c2)c1
+O=C(O)c1cccc(-c2ccnc(Nc3ccc(N4CCC(N5CCNCC5)CC4)cc3)c2)c1
+O=Cc1cccc(-c2ccnc(Nc3ccc(N4CCN(C5CCC5)CC4)cc3)c2)c1
+O=C1CCN(c2ccc(Nc3cc(-c4cccc(NC5CCC5)c4)ccn3)cc2)C1
+Nc1cccc(-c2ccnc(Nc3ccc(N4CCC(N5CCNCC5)C4)cc3)c2)c1

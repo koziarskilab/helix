@@ -1,0 +1,12 @@
+import rgfn.bo.logger
+
+BOLogger.mode = 'online'
+BOLogger.project_name = 'helix'
+
+BOLogger.logdir = @logdir/get_str()
+BOLogger.experiment_name = %run_name
+logdir/get_str.format = '{}/{}'
+logdir/get_str.values = [%run_dir, 'logs']
+
+logger/gin.singleton.constructor = @BOLogger
+logger = @logger/gin.singleton()

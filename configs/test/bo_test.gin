@@ -1,0 +1,24 @@
+include 'configs/helix_bo.gin'
+
+run_name = 'bo_test'
+device = 'cpu'
+
+# Initial hit
+load_starting_molecules.filepath = "experiments/initial_hits/seh_hits.csv"
+load_starting_molecules.hit = 0
+
+# Trainer parameters
+Trainer.train_forward_n_trajectories = 1
+Trainer.train_batch_size = 1
+Trainer.train_replay_n_trajectories = 1
+Trainer.train_reinforce_n_trajectories = 1
+
+RGFN.M = 10
+RGFN.q = 5
+RGFN.n_train_iterations = 1
+
+# Run config
+RunConfig.n_init = 5
+RunConfig.n_iters = 2
+
+BOLogger.mode = 'disabled'

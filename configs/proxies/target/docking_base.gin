@@ -1,0 +1,10 @@
+proxy/gin.singleton.constructor = @DockingMoleculeProxy
+train_proxy = @proxy/gin.singleton()
+DockingMoleculeProxy.qv_dir = 'quickvina_dir'
+DockingMoleculeProxy.vina_mode = 'QuickVina2'
+DockingMoleculeProxy.preparator_class = @MeekoLigandPreparator
+DockingMoleculeProxy.print_msgs = False
+DockingMoleculeProxy.gnina = False
+DockingMoleculeProxy.n_conformers = 1
+DockingMoleculeProxy.n_gpu = 1
+DockingMoleculeProxy.exhaustiveness = 8000

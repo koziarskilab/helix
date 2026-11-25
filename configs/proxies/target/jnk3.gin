@@ -1,0 +1,3 @@
+proxy/gin.singleton.constructor = @TDCProxy
+TDCProxy.oracle_name = 'JNK3'
+train_proxy = @proxy/gin.singleton()

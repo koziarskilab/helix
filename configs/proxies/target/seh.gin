@@ -1,0 +1,2 @@
+proxy/gin.singleton.constructor = @SehMoleculeProxy
+train_proxy = @proxy/gin.singleton()

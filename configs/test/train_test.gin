@@ -1,0 +1,17 @@
+include 'configs/helix_base.gin'
+include 'configs/proxies/target/qed.gin'
+
+run_name = "train_test"
+device = 'cpu'
+
+Trainer.n_iterations = 2
+Trainer.train_forward_n_trajectories = 1
+Trainer.train_batch_size = 1
+Trainer.train_replay_n_trajectories = 1
+Trainer.train_reinforce_n_trajectories = 1
+
+load_starting_molecules.filepath = "experiments/data/initial_hits/seh_hits.csv"
+load_starting_molecules.hit = 0
+
+# WandB settings
+WandbLogger.mode = 'disabled'

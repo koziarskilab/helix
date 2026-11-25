@@ -1,0 +1,6 @@
+molecule,oracle_score
+C#CCNc1cnc(N2CCC[C@@H](C(=O)NCc3ccc(C(F)(F)F)cc3)C2)nc1,6.3128066
+C#CCNc1cnc(N2CC(C(=O)NCc3ccc(C(F)(F)F)cc3)C2)nc1,6.191314
+C#CCNc1cnc(N2CCC(C(=O)NCc3ccc(C(F)(F)F)cc3)CC2)nc1,6.1257205
+NCc1cn(Cc2ccc(C(=O)N3CCC(C(=O)NCc4ccc(C(F)(F)F)cc4)CC3)cc2)nn1,5.963738
+CCn1cnc(N2CCN(C(=O)C3CCN(c4ccc(C(F)(F)F)cn4)CC3)CC2)c1,5.9476943

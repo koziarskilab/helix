@@ -1,0 +1,9 @@
+# HELiX on ChemProjector initial hits
+include 'configs/helix_bo.gin'
+
+# Use projection hits
+load_starting_molecules.filepath = 'experiments/initial_hits/projection_hits.csv'
+
+load_starting_molecules.budget = 2
+beta = 8
+RunConfig.n_iters = 10

@@ -1,0 +1,3 @@
+include 'configs/helix_bo.gin'
+
+make_oracle.noise_std = 0.5

@@ -1,0 +1,5 @@
+# HELiX on concat 64k fragment library
+include 'configs/helix_bo.gin'
+include 'configs/experiments/concat_2k.gin'
+
+fragment_path = 'data/concat/fragments_64k.txt'

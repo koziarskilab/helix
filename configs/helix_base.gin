@@ -1,0 +1,25 @@
+include 'configs/rgfn_base.gin'
+include 'configs/rewards/linear.gin'
+include 'configs/envs/settings/small.gin'
+
+include 'configs/objectives/trajectory_balance_reinforce.gin'
+TrajectoryBalanceReinforceObjective.entropy_multiplier = 0.2
+
+# Reward shaping
+beta = 8
+
+Trainer.train_forward_n_trajectories = 64
+Trainer.train_replay_n_trajectories = 32
+Trainer.train_reinforce_n_trajectories = 32
+
+import experiments.utils.helpers
+ReactionEnv.starting_smiles_with_budget = @load_starting_molecules()
+load_starting_molecules.budget = 1
+ReactionEnv.max_num_decompositions = 2
+
+# Required - set in your experiment config:
+hits_filepath = "..."
+load_starting_molecules.filepath = %hits_filepath
+load_starting_molecules.hit = 0
+
+user_root_dir = 'runs'

@@ -1,0 +1,80 @@
+import gin_config
+import rgfn
+
+user_root_dir = 'runs'
+include 'configs/envs/rgfn.gin'
+include 'configs/loggers/wandb.gin'
+include 'configs/samplers/random.gin'
+include 'configs/rewards/exponential.gin'
+include 'configs/policies/rgfn.gin'
+include 'configs/policies/exploration/uniform.gin'
+include 'configs/policies/action_embeddings/fingerprint.gin'
+include 'configs/objectives/trajectory_balance.gin'
+include 'configs/replay_buffers/random.gin'
+include 'configs/replay_buffers/reward_prioritized.gin'
+include 'configs/envs/dynamic_library/none.gin'
+include 'configs/proxies/path_cost.gin'
+
+run_dir = @run_dir/get_str()
+run_dir/get_str.format = '{}/{}'
+run_dir/get_str.values = [%user_root_dir, %run_name]
+
+Reward.beta = %beta
+RewardPrioritizedReplayBuffer.temperature = %beta
+TrajectoryBalanceOptimizer.cls_name = 'Adam'
+TrajectoryBalanceOptimizer.lr = 0.001
+TrajectoryBalanceOptimizer.logZ_multiplier = 100.0
+TrajectoryBalanceObjective.trajectory_filter = @RGFNTrajectoryFilter()
+TrajectoryBalanceReinforceObjective.trajectory_filter = @RGFNTrajectoryFilter()
+
+proxy_component_name = None
+train_metrics = [
+    @StandardGFNMetrics(),
+    @NumScaffoldsFound(),
+    @FractionEarlyTerminate(),
+    @QED(),
+    @TanimotoSimilarityModes(),
+    @TrajectoryCost(),
+    @ActionSpaceSize(),
+    @ScaffoldCostsList(),
+    @SaveSynthesisPaths(),
+    @ProxyCalls(),
+    @BackwardDecomposeLogProbs(),
+    @ForwardLogProbs(),
+    @NumReactions()
+]
+TanimotoSimilarityModes.term_name = %proxy_component_name
+NumScaffoldsFound.proxy_component_name = %proxy_component_name
+ScaffoldCostsList.proxy_component_name = %proxy_component_name
+SaveSynthesisPaths.proxy_component_name = %proxy_component_name
+NumScaffoldsFound.proxy_value_threshold_list = [7, 8]
+NumScaffoldsFound.proxy_component_name = None
+TanimotoSimilarityModes.run_dir = %run_dir
+TanimotoSimilarityModes.proxy = %train_proxy
+TanimotoSimilarityModes.compute_every_n = %evaluation_step
+TanimotoSimilarityModes.similarity_threshold = 0.3
+TanimotoSimilarityModes.max_modes = 2000
+ScaffoldCostsList.proxy_value_threshold_list = [8]
+SaveSynthesisPaths.run_dir = %run_dir
+ProxyCalls.proxy = %train_proxy
+NewBuildingBlocksUsage.threshold = 8.0
+evaluation_step = 500
+
+Trainer.run_dir = %run_dir
+Trainer.train_forward_sampler = %train_forward_sampler
+Trainer.train_replay_buffer = %train_replay_buffer
+Trainer.train_reinforce_replay_buffer = %train_reinforce_replay_buffer
+Trainer.train_metrics = %train_metrics
+Trainer.objective = %objective
+Trainer.optimizer = @TrajectoryBalanceOptimizer()
+Trainer.lr_scheduler = None
+Trainer.n_iterations = 5001
+Trainer.train_forward_n_trajectories = 64
+Trainer.train_backward_n_trajectories = 0
+Trainer.train_replay_n_trajectories = 32
+Trainer.train_reinforce_n_trajectories = 0
+Trainer.logger = %logger
+Trainer.device = 'auto'
+Trainer.path_cost_proxy = %path_cost_proxy
+Trainer.dynamic_fragment_library = %dynamic_library
+Trainer.oracle_call_budget = 100000

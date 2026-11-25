@@ -1,0 +1,6 @@
+# HELiX ablation w/o BO. Trains the GFN directly on the oracle with the same budget
+
+include 'configs/helix_base.gin'
+
+Trainer.oracle_call_budget = 10000
+beta = 8

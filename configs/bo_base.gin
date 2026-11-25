@@ -1,0 +1,38 @@
+# RunConfig
+RunConfig.n_init = 50
+RunConfig.n_iters = 20
+RunConfig.checkpoint_freq = 1
+
+# Acquisition factory
+make_acquisition.acq = "ucb"
+make_acquisition.beta = 1.0
+
+# AcquisitionProxy singleton (RGFN reward signal)
+acquisition_proxy/gin.singleton.constructor = @AcquisitionProxy
+acquisition_proxy = @acquisition_proxy/gin.singleton()
+train_proxy = %acquisition_proxy
+
+# Trainer
+Trainer.n_iterations = 0
+Trainer.checkpoint_mode = "none"
+Trainer.resume_path = None
+
+train_metrics = [
+    @StandardGFNMetrics(),
+    @NumScaffoldsFound(),
+    @ActionSpaceSize(),
+    @QED(),
+    @FractionEarlyTerminate(),
+    @NumReactions(),
+    @SaveSynthesisPaths(),
+]
+
+trainer/gin.singleton.constructor = @Trainer
+trainer = @trainer/gin.singleton()
+
+# RGFN adapter
+RGFN.trainer = %trainer
+RGFN.proxy = %acquisition_proxy
+RGFN.M = 1000
+RGFN.q = 500
+RGFN.n_train_iterations = 200

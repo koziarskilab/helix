@@ -1,0 +1,11 @@
+molecule
+Cc1ccnc2[nH]c(-c3ccc(CN(CCO)CCO)cc3)nc12
+COc1ccnc(Nc2cccc(-c3ccc(NC4CNC4)cc3)c2)n1
+COc1ccnc(Nc2ccc(-c3ccc(-c4cnc(F)nc4)cc3)cc2)n1
+COc1ccnc(Nc2ccc(-c3ccnc(NC4CC4)c3)cc2)n1
+Cc1ccnc2[nH]c(-c3ccc(C(=O)N[C@H](C)C(=O)O)cc3)nc12
+Cc1ccnc2[nH]c(-c3ccc(CN(C(=O)CN)C4CCC4)cc3)nc12
+Cc1ccnc2[nH]c(-c3ccc(CN(C(=O)CBr)C4CCC4)cc3)nc12
+COc1ccnc(Nc2ccc(-c3nc(F)ccc3NC3CCC3)cc2)n1
+Cc1ccnc2[nH]c(-c3ccc(CN(CC(=O)O)C4CCC4)cc3)nc12
+COCCN(Cc1ccc(-c2nc3c(C)ccnc3[nH]2)cc1)C(=O)NC1CCC1

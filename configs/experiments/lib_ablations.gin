@@ -1,0 +1,11 @@
+# HELiX on CONCAT (128k) library
+include 'configs/helix_bo.gin'
+
+# Concat library overrides
+fragment_path = 'data/concat/fragments.txt'
+reaction_path = 'data/concat/templates.txt'
+cost_path     = 'data/concat/fragment_to_real_cost.json'
+yield_path    = None
+yield_value   = 0.75
+
+load_starting_molecules.budget = 0

@@ -1,0 +1,5 @@
+RandomReplayBuffer.sampler = %train_backward_sampler
+RandomReplayBuffer.max_size = 1e6
+
+train_reinforce_replay_buffer/gin.singleton.constructor = @RandomReplayBuffer
+train_reinforce_replay_buffer = @train_reinforce_replay_buffer/gin.singleton()
